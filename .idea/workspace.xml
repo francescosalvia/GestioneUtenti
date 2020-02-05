@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d8263e5-d103-42fd-b306-a242380836fa" name="Default Changelist" comment="" />
+    <list default="true" id="9d8263e5-d103-42fd-b306-a242380836fa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/dao/DataBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/DettaglioOrdine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/Evento.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/LoggedIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/LoggedOut.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/OrdineCompletato.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/Utente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/service/ServizioUtente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DataBase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DettagliOrdini.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Eventi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LoggedIn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LoggedOut.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/OrdiniCompletati.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Servizi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utenti.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +46,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -57,5 +79,19 @@
       <updated>1580833794645</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="765" y="237" key="#com.intellij.ide.util.MemberChooser" timestamp="1580891950626">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="237" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580891950626" />
+    <state x="714" y="92" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1580890908081">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="714" y="92" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580890908081" />
+    <state x="461" y="163" key="SettingsEditor" timestamp="1580891308287">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="163" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580891308287" />
   </component>
 </project>
