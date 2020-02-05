@@ -2,25 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d8263e5-d103-42fd-b306-a242380836fa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/dao/DataBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/DettaglioOrdine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/Evento.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/LoggedIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/LoggedOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/OrdineCompletato.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/Utente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/service/ServizioUtente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DettagliOrdini.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Eventi.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LoggedIn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LoggedOut.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/OrdiniCompletati.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Servizi.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utenti.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/contactlab/dao/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/dao/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/contactlab/data/DettaglioOrdine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/DettaglioOrdine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/contactlab/data/Evento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/Evento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/contactlab/data/Indirizzo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/Indirizzo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/contactlab/data/LoggedIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/LoggedIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/contactlab/data/LoggedOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/LoggedOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/contactlab/data/OrdineCompletato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/OrdineCompletato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/contactlab/data/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/data/Utente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/contactlab/service/ServizioUtente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/contactlab/service/ServizioUtente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +45,20 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\francesco.salvia\Desktop\GestioneUtentiAggiornata\src\main\resources" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="GestioneUtentiAggiornata" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -89,9 +94,52 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="714" y="92" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580890908081" />
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom" timestamp="1580900675460">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580900675460" />
+    <state width="1877" height="274" key="GridCell.Tab.0.center" timestamp="1580900675460">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580900675460" />
+    <state width="1877" height="274" key="GridCell.Tab.0.left" timestamp="1580900675460">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580900675460" />
+    <state width="1877" height="274" key="GridCell.Tab.0.right" timestamp="1580900675460">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="274" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580900675460" />
+    <state width="1877" height="338" key="GridCell.Tab.1.bottom" timestamp="1580900343028">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580900343028" />
+    <state width="1877" height="338" key="GridCell.Tab.1.center" timestamp="1580900343028">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580900343028" />
+    <state width="1877" height="338" key="GridCell.Tab.1.left" timestamp="1580900343028">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580900343028" />
+    <state width="1877" height="338" key="GridCell.Tab.1.right" timestamp="1580900343028">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580900343028" />
     <state x="461" y="163" key="SettingsEditor" timestamp="1580891308287">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1580891308287" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/contactlab/dao/DataBase.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

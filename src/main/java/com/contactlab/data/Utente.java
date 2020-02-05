@@ -70,7 +70,7 @@ public class Utente {
 
     @Override
     public String toString() {
-        return "com.contactlab.data.Utente{" +
+        return "Utente{" +
                 "nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
                 ", email='" + email + '\'' +

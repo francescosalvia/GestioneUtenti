@@ -63,7 +63,7 @@ public class DettaglioOrdine {
 
     @Override
     public String toString() {
-        return "com.contactlab.data.DettaglioOrdine{" +
+        return " DettaglioOrdine{" +
                 "orderLineId='" + orderLineId + '\'' +
                 ", id='" + id + '\'' +
                 ", quantita=" + quantita +

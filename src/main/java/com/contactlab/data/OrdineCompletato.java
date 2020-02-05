@@ -66,7 +66,7 @@ public class OrdineCompletato extends  Evento {
 
     @Override
     public String toString() {
-        return "com.contactlab.data.OrdineCompletato{" +
+        return " OrdineCompletato{" +
                 "orderId='" + orderId + '\'' +
                 ", storeCode='" + storeCode + '\'' +
                 ", paymentMethod='" + paymentMethod + '\'' +

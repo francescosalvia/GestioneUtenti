@@ -39,7 +39,7 @@ public class Evento
 
     @Override
     public String toString() {
-        return "com.contactlab.data.Evento{" +
+        return " Evento{" +
                 "idEvento='" + idEvento + '\'' +
                 ", data=" + data +
                 ", nuoviValori=" + nuoviValori +

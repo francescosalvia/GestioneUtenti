@@ -1,15 +1,20 @@
 package com.contactlab.service;
 
+import com.contactlab.dao.DataBase;
 import com.contactlab.data.Evento;
 import com.contactlab.data.Indirizzo;
 import com.contactlab.data.Utente;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class ServizioUtente {
-    List<Utente> utenti = new ArrayList<>();
+
+    private DataBase dataBase = new DataBase();
+
+    private List<Utente> utenti = new ArrayList<>();
 
 
     public List<Utente> getUtenti() {
@@ -36,7 +41,9 @@ public class ServizioUtente {
         return opt;
     }
 
-    /** METODI AGGIUNGI **/
+    /**
+     * METODI AGGIUNGI
+     **/
 
     public void aggiungiUtente(Utente utente) {
         utenti.add(utente);
@@ -52,8 +59,7 @@ public class ServizioUtente {
 
     }
 
-    public void aggiungiEvento(String email, List<Evento> eventi)
-    {
+    public void aggiungiEvento(String email, List<Evento> eventi) {
         Optional<Utente> utenteSelezionato = cercaUtenti(email);
 
         if (utenteSelezionato.isPresent()) {
@@ -62,14 +68,15 @@ public class ServizioUtente {
     }
 
 
-    /** METODI RIMUOVI **/
+    /**
+     * METODI RIMUOVI
+     **/
 
-    public void rimuoviUtente(String email)
-    {
-       utenti.removeIf(utente -> utente.getEmail().equalsIgnoreCase(email));
+    public void rimuoviUtente(String email) {
+        utenti.removeIf(utente -> utente.getEmail().equalsIgnoreCase(email));
     }
 
-    public void rimuoviEvento(String email, String idEvento){
+    public void rimuoviEvento(String email, String idEvento) {
 
         Optional<Utente> utenteSelezionato = cercaUtenti(email);
 
@@ -80,7 +87,9 @@ public class ServizioUtente {
     }
 
 
-    /** METODI STAMPA **/
+    /**
+     * METODI STAMPA
+     **/
 
     public void stampaUtenti() {
         for (Utente utente : utenti) {
@@ -88,10 +97,23 @@ public class ServizioUtente {
         }
     }
 
-    public void stampaEventi()
-    {
+    public void stampaEventi() {
         for (Utente utente : utenti) {
             System.out.println(utente.getEventi());
+        }
+    }
+
+    /** METODI LEGGI **/
+
+    public void leggiUtendiDB() throws SQLException {
+
+        utenti = dataBase.getUtenti();
+    }
+
+    public void leggiIndirizziDB() throws SQLException {
+
+        for (Utente utente : utenti) {
+            utente.setIndirizzo(dataBase.getIndirizzo(utente.getEmail()));
         }
     }
 

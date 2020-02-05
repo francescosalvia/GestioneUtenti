@@ -53,7 +53,7 @@ public class Indirizzo {
 
     @Override
     public String toString() {
-        return "com.contactlab.data.Indirizzo{" +
+        return " Indirizzo{" +
                 "via='" + via + '\'' +
                 ", citta='" + citta + '\'' +
                 ", provincia='" + provincia + '\'' +

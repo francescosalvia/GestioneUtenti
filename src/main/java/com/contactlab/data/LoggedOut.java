@@ -5,6 +5,6 @@ public class LoggedOut extends  Evento
 
     @Override
     public String toString() {
-        return super.toString() + "com.contactlab.data.LoggedOut";
+        return super.toString() + " LoggedOut";
     }
 }
