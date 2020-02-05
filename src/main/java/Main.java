@@ -17,6 +17,13 @@ public class Main
             s.leggiIndirizziDB();
             s.stampaUtenti();
 
+            System.out.println("----------------------------");
+            s.leggiEventiDB();
+            s.stampaUtenti();
+            
+            System.out.println("----------------------------");
+            s.stampaEventi();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

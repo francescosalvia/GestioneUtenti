@@ -117,4 +117,12 @@ public class ServizioUtente {
         }
     }
 
+    public void leggiEventiDB() throws SQLException {
+
+        for (Utente utente : utenti) {
+            utente.setEventi(dataBase.getEvento(utente.getEmail()));
+        }
+    }
+
+
 }
