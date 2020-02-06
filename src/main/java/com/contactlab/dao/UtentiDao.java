@@ -364,15 +364,53 @@ public class UtentiDao {
 
     }
 
-    public void insertOrdiniCompletati(String idEvento, String orderId, String storeCode, String payment_method, String shipping_method, Double prezzo_totale,
-                                       Double tassa_totale, String ip, String browser, String cartaDiCredito, LocalDateTime data, String email) throws SQLException {
+    public int insertTipoEvento(String tipoEvento) throws SQLException {
+        PreparedStatement ps2 = getConnection().prepareStatement("INSERT INTO registro_eventi(tipo_evento) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
+        ps2.setString(1,tipoEvento);
+        ps2.executeUpdate();
+        ResultSet rs2 = ps2.getGeneratedKeys();
+        rs2.next();
+
+        return rs2.getInt("id_evento");
+
+    }
+
+    public int checkOrderId(String order_id) throws SQLException {
+
+        int idEvento = 0;
+        PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM ordini_completati WHERE order_id = ? ");
+        ps.setString(1, order_id);
+        ResultSet te = ps.executeQuery();
+        while (te.next()) {
+            idEvento = te.getInt("id_evento");
+        }
+        return  idEvento;
+    }
+
+    public int getIdEvento(String tipoEvento) throws SQLException {
+        int idEvento = 0;
+        PreparedStatement ps = getConnection().prepareStatement("SELECT id_evento FROM registro_eventi WHERE tipo_evento = ? ORDER BY idEvento DESC LIMIT 1");
+        ps.setString(1, tipoEvento);
+        ResultSet te = ps.executeQuery();
+        while (te.next()) {
+            idEvento = te.getInt("id_evento");
+        }
+        return idEvento;
+    }
+
+
+
+
+    public void insertOrdiniCompletati(int idEvento,String orderId, String storeCode, String payment_method, String shipping_method, Double prezzo_totale,
+                                       Double tassa_totale, String ip, String browser, String cartaDiCredito, LocalDateTime data, String email,String tipoEvento) throws SQLException {
+
 
         PreparedStatement ps = getConnection().prepareStatement("INSERT INTO ordini_completati(id_evento, order_id,store_code, payment_method, shipping_method, " +
                                                                     " prezzo_totale, tassa_totale,ip ,browser,carta_di_credito,data,email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 
         Timestamp timestamp = Timestamp.valueOf(data);
 
-        ps.setString(1, idEvento);
+        ps.setInt(1, idEvento);
         ps.setString(2, orderId);
         ps.setString(3, storeCode);
         ps.setString(4, payment_method);
@@ -391,6 +429,28 @@ public class UtentiDao {
         rs.next();
 
 
+    }
+
+
+    public Utente getUtentePerEmail(String email) throws SQLException {
+
+        Utente utente = null;
+
+        PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM utente where email = ?");
+        ps.setString(1,email);
+
+        ResultSet ut = ps.executeQuery();
+
+        while (ut.next()) {
+            String nome = ut.getString("nome");
+            String cognome = ut.getString("cognome");
+            String email2 = ut.getString("email");
+            String telefono = ut.getString("telefono");
+
+            utente = new Utente(nome, cognome, email2, telefono);
+
+        }
+        return utente;
     }
 
 

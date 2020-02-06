@@ -14,7 +14,7 @@ public class Main
     public static void main(String[] args){
 
         try {
-
+/*
             List<Utente> utenti = s.getUtenti();
             for (Utente value : utenti) {
                 System.out.println(value.toString());
@@ -114,6 +114,12 @@ public class Main
             s.caricaIndirizzi();
 
             s.caricaOrdineCO();
+
+*/
+        s.caricaUtente();
+
+        s.caricaOrdineCO();
+
 
 
         } catch (SQLException e) {

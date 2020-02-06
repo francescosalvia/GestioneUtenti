@@ -411,42 +411,45 @@ public class ServizioUtente {
             BufferedReader br = new BufferedReader(fr);
             String line;
 
-            List<Utente> utenti = dataBase.getUtenti();
-
             int contatore = 0;
             while ((line = br.readLine()) != null) {
                 String[] details = line.split(";");
 
                 contatore++;
 
-                if (details.length == 12) {
-                    String idEvento = details[0];
-                    String orderId = details[1];
-                    String storeCode = details[2];
-                    String payment_method = details[3];
-                    String shipping_method = details[4];
-                    String prezzototale = details[5];
+                if (details.length == 11) {
+                    String orderId = details[0];
+                    String storeCode = details[1];
+                    String payment_method = details[2];
+                    String shipping_method = details[3];
+                    String prezzototale = details[4];
                     double prezzo_totale = Double.parseDouble(prezzototale);
-                    String tassatotale = details[6];
+                    String tassatotale = details[5];
                     double tassa_totale = Double.parseDouble(tassatotale);
-                    String ip = details[7];
-                    String browser = details[8];
-                    String cartaDiCredito = details[9];
-                    String localDate = details[10];
+                    String ip = details[6];
+                    String browser = details[7];
+                    String cartaDiCredito = details[8];
+                    String localDate = details[9];
                     LocalDateTime data = controlloDate(localDate, contatore);
-                    String email = details[11];
+                    String email = details[10];
+                    String tipoEvento = "ordine_completato";
 
-                    int uSize = utenti.size();
-
-                    if (uSize > 0) {
-                        for (int i = 0; i < uSize; i++) {
-                            if (email.equalsIgnoreCase(utenti.get(i).getEmail())) {
-                                dataBase.insertOrdiniCompletati(idEvento,  orderId,  storeCode,  payment_method,  shipping_method,  prezzo_totale
-                                        , tassa_totale,  ip,  browser,  cartaDiCredito,  data,  email);
-                            }
+                    if (dataBase.getUtentePerEmail(email) != null)
+                    {
+                        int idEvento = dataBase.checkOrderId(orderId);
+                        if (idEvento == 0){
+                            int idEventoDopoInsert = dataBase.insertTipoEvento(tipoEvento);
+                            dataBase.insertOrdiniCompletati(idEventoDopoInsert,orderId, storeCode, payment_method, shipping_method, prezzo_totale
+                                    , tassa_totale, ip, browser, cartaDiCredito, data, email,tipoEvento);
+                        } else {
+                            //cambiare con metodo update
+                            dataBase.insertOrdiniCompletati(idEvento,orderId, storeCode, payment_method, shipping_method, prezzo_totale
+                                    , tassa_totale, ip, browser, cartaDiCredito, data, email,tipoEvento);
                         }
+                    } else
+                    {
+                        log.warn("Nessun utente trovato con questa email");
                     }
-
                 }
             }
         } catch (IOException e) {
