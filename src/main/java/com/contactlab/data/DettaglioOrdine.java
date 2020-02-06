@@ -1,6 +1,6 @@
 package com.contactlab.data;
 
-public class DettaglioOrdine {
+public class DettaglioOrdine extends OrdineCompletato {
 
     private String orderLineId;
     private String id;

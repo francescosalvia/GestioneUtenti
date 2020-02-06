@@ -26,7 +26,7 @@ public class Amount {
 
     @Override
     public String toString() {
-        return "com.contactlab.data.Amount{" +
+        return "Amount{" +
                 "total=" + total +
                 ", tax=" + tax +
                 '}';

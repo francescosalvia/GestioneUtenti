@@ -1,9 +1,7 @@
 package com.contactlab.service;
 
-import com.contactlab.dao.DataBase;
-import com.contactlab.data.Evento;
-import com.contactlab.data.Indirizzo;
-import com.contactlab.data.Utente;
+import com.contactlab.dao.UtentiDao;
+import com.contactlab.data.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,116 +10,118 @@ import java.util.Optional;
 
 public class ServizioUtente {
 
-    private DataBase dataBase = new DataBase();
+    private UtentiDao dataBase = new UtentiDao();
 
-    private List<Utente> utenti = new ArrayList<>();
-
-
-    public List<Utente> getUtenti() {
-        return utenti;
-    }
-
-    public void setUtenti(List<Utente> utenti) {
-        this.utenti = utenti;
-    }
 
     /**
      * METODI
      **/
 
-    public Optional<Utente> cercaUtenti(String email) {
-
-        Optional<Utente> opt = Optional.empty();
-
-        for (Utente utente : utenti) {
-            if (utente.getEmail().equalsIgnoreCase(email)) {
-                opt = Optional.of(utente);
-            }
-        }
-        return opt;
-    }
 
     /**
-     * METODI AGGIUNGI
+     * METODI LEGGI
      **/
 
-    public void aggiungiUtente(Utente utente) {
-        utenti.add(utente);
+    public List<Utente> getUtenti() throws SQLException {
+
+        return dataBase.getUtenti();
     }
 
-    public void aggiungiIndirizzo(String email, Indirizzo indirizzo) {
+    public List<Utente> getIndirizzo() throws SQLException {
 
-        Optional<Utente> utenteSelezionato = cercaUtenti(email);
-
-        if (utenteSelezionato.isPresent()) {
-            utenteSelezionato.get().setIndirizzo(indirizzo);
-        }
-
-    }
-
-    public void aggiungiEvento(String email, List<Evento> eventi) {
-        Optional<Utente> utenteSelezionato = cercaUtenti(email);
-
-        if (utenteSelezionato.isPresent()) {
-            utenteSelezionato.get().setEventi(eventi);
-        }
-    }
-
-
-    /**
-     * METODI RIMUOVI
-     **/
-
-    public void rimuoviUtente(String email) {
-        utenti.removeIf(utente -> utente.getEmail().equalsIgnoreCase(email));
-    }
-
-    public void rimuoviEvento(String email, String idEvento) {
-
-        Optional<Utente> utenteSelezionato = cercaUtenti(email);
-
-        if (utenteSelezionato.isPresent()) {
-            utenteSelezionato.get().getEventi().removeIf(evento -> evento.getIdEvento().equalsIgnoreCase(idEvento));
-        }
-
-    }
-
-
-    /**
-     * METODI STAMPA
-     **/
-
-    public void stampaUtenti() {
-        for (Utente utente : utenti) {
-            System.out.println(utente.toString());
-        }
-    }
-
-    public void stampaEventi() {
-        for (Utente utente : utenti) {
-            System.out.println(utente.getEventi());
-        }
-    }
-
-    /** METODI LEGGI **/
-
-    public void leggiUtendiDB() throws SQLException {
+        List<Utente> utenti;
 
         utenti = dataBase.getUtenti();
-    }
-
-    public void leggiIndirizziDB() throws SQLException {
 
         for (Utente utente : utenti) {
             utente.setIndirizzo(dataBase.getIndirizzo(utente.getEmail()));
         }
+        return utenti;
     }
 
-    public void leggiEventiDB() throws SQLException {
+    public List<OrdineCompletato> getOrdineCompletatiConDettaglio() throws SQLException {
 
-        for (Utente utente : utenti) {
-            utente.setEventi(dataBase.getEvento(utente.getEmail()));
+        List<OrdineCompletato> ordini = new ArrayList<>();
+
+        ordini.addAll(dataBase.getOrdineCompletato());
+
+        for(OrdineCompletato ordine : ordini)
+        {
+            ordine.setDettaglioOrdini(dataBase.getDettaglioOrdine(ordine.getIdEvento()));
         }
+
+        return ordini;
+    }
+
+    public List<Evento> getOrdineCompletatiConDettaglioConEmail(String email) throws SQLException {
+
+        List<Evento> ordini = new ArrayList<>();
+
+        ordini.addAll(dataBase.getOrdineCompletatoPerEmail(email));
+
+        for(Evento ordine : ordini)
+        {
+            if (ordine instanceof OrdineCompletato)
+            {
+                ((OrdineCompletato) ordine).setDettaglioOrdini(dataBase.getDettaglioOrdine(ordine.getIdEvento()));
+            }
+
+        }
+
+        return ordini;
+    }
+
+
+
+    public List<OrdineCompletato> getOrdineCompletati() throws SQLException {
+
+        return dataBase.getOrdineCompletato();
+    }
+
+    public List<LoggedIn> getLoggedIn() throws SQLException {
+
+        return dataBase.getLoggedIn();
+    }
+
+    public List<LoggedOut> getLoggedOut() throws SQLException {
+
+        return dataBase.getLoggedOut();
+    }
+
+    public List<Evento> getEventi() throws SQLException {
+        List<Evento> eventi = new ArrayList<>();
+
+        eventi.addAll(dataBase.getOrdineCompletato());
+        eventi.addAll(dataBase.getLoggedIn());
+        eventi.addAll(dataBase.getLoggedOut());
+
+        return eventi;
+    }
+
+    public List<Utente> getUtentiCompleto(Boolean indirizzo, Boolean eventi) throws SQLException {
+        // todo - tutti gli utenti, con indirizzo ed eventi in base al tipo di boolean
+        List<Utente> utenti;
+
+        utenti = dataBase.getUtenti();
+
+        if (indirizzo) {
+            for (Utente utente : utenti) {
+                utente.setIndirizzo(dataBase.getIndirizzo(utente.getEmail()));
+            }
+        }
+        if (eventi) {
+            for (Utente utente : utenti) {
+                List<Evento> evento = new ArrayList<>();
+                String email = utente.getEmail();
+                evento.addAll(getOrdineCompletatiConDettaglioConEmail(email));
+                evento.addAll(dataBase.getLoggedOutPerEmail(email));
+                evento.addAll(dataBase.getLoggedInPerEmail(email));
+                utente.setEventi(evento);
+            }
+
+        }
+
+        return utenti;
     }
 
 
