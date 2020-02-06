@@ -1,14 +1,12 @@
 package com.contactlab.dao;
 
 import com.contactlab.data.*;
-import com.contactlab.service.ServizioUtente;
+
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import org.apache.commons.lang3.StringUtils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -274,7 +272,7 @@ public class UtentiDao {
 
 
         PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM logged_in where email = ?");
-        ps.setString(1,email);
+        ps.setString(1, email);
         ResultSet lin = ps.executeQuery();
 
         while (lin.next()) {
@@ -306,7 +304,7 @@ public class UtentiDao {
         List<LoggedOut> evento = new ArrayList<>();
 
         PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM logged_out where email = ?");
-        ps.setString(1,email);
+        ps.setString(1, email);
         ResultSet lon = ps.executeQuery();
 
         while (lon.next()) {
@@ -333,6 +331,68 @@ public class UtentiDao {
     }
 
 
-}
+    public void insertUtente(String nome, String cognome, String email, String telefono) throws SQLException {
+        PreparedStatement ps = getConnection().prepareStatement("INSERT INTO utente(nome,cognome,email,telefono) VALUES (?,?,?,?)");
+        ps.setString(1, nome);
+        ps.setString(2, cognome);
+        ps.setString(3, email);
+        ps.setString(4, telefono);
 
+        ps.executeUpdate();
+
+        ResultSet rs = ps.getGeneratedKeys();
+        rs.next();
+
+
+    }
+
+
+    public void insertIndirizzo(String via, String citta, String provincia, String cap, String nazione, String email) throws SQLException {
+        PreparedStatement ps = getConnection().prepareStatement("INSERT INTO indirizzi(via, citta, provincia, cap, nazione, email) VALUES (?,?,?,?,?,?)");
+        ps.setString(1, via);
+        ps.setString(2, citta);
+        ps.setString(3, provincia);
+        ps.setString(4, cap);
+        ps.setString(5, nazione);
+        ps.setString(6, email);
+
+        ps.executeUpdate();
+
+        ResultSet rs = ps.getGeneratedKeys();
+        rs.next();
+
+
+    }
+
+    public void insertOrdiniCompletati(String idEvento, String orderId, String storeCode, String payment_method, String shipping_method, Double prezzo_totale,
+                                       Double tassa_totale, String ip, String browser, String cartaDiCredito, LocalDateTime data, String email) throws SQLException {
+
+        PreparedStatement ps = getConnection().prepareStatement("INSERT INTO ordini_completati(id_evento, order_id,store_code, payment_method, shipping_method, " +
+                                                                    " prezzo_totale, tassa_totale,ip ,browser,carta_di_credito,data,email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+
+        Timestamp timestamp = Timestamp.valueOf(data);
+
+        ps.setString(1, idEvento);
+        ps.setString(2, orderId);
+        ps.setString(3, storeCode);
+        ps.setString(4, payment_method);
+        ps.setString(5, shipping_method);
+        ps.setDouble(6, prezzo_totale);
+        ps.setDouble(7, tassa_totale);
+        ps.setString(8, ip);
+        ps.setString(9, browser);
+        ps.setString(10, cartaDiCredito);
+        ps.setTimestamp(11, timestamp);
+        ps.setString(12, email);
+
+        ps.executeUpdate();
+
+        ResultSet rs = ps.getGeneratedKeys();
+        rs.next();
+
+
+    }
+
+
+}
 

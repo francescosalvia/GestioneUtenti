@@ -1,5 +1,7 @@
 import com.contactlab.data.*;
 import com.contactlab.service.ServizioUtente;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import java.sql.SQLException;
@@ -7,7 +9,7 @@ import java.util.List;
 
 public class Main
 {
-
+    private static Logger log = LoggerFactory.getLogger(Main.class);
     private static ServizioUtente s = new ServizioUtente();
     public static void main(String[] args){
 
@@ -89,8 +91,33 @@ public class Main
                 System.out.println(utenti.get(i).toString());
             }
 
+            System.out.println("--------------------------");
+            System.out.println("--------------------------");
+
+            System.out.println(s.creaJsonUtenti());
+
+            System.out.println("--------------------------");
+            System.out.println("--------------------------");
+
+            System.out.println(s.creaJsonUtentiConIndirizzo());
+
+            System.out.println("--------------------------");
+            System.out.println("--------------------------");
+            System.out.println("--------------------------");
+            System.out.println("--------------------------");
+            System.out.println(s.creaJsonUtentiConOrdineCompletato());
+
+            System.out.println("--------------------------");
+
+            s.caricaUtente();
+
+            s.caricaIndirizzi();
+
+            s.caricaOrdineCO();
+
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("SQLException errore ", e);
         }
 
 
