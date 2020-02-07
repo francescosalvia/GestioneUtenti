@@ -371,7 +371,7 @@ public class UtentiDao {
         ResultSet rs2 = ps2.getGeneratedKeys();
         rs2.next();
 
-        return rs2.getInt("id_evento");
+        return rs2.getInt(1);
 
     }
 
@@ -452,6 +452,65 @@ public class UtentiDao {
         }
         return utente;
     }
+
+
+
+    public void updateOrdiniCompletati(int idEvento,String orderId, String storeCode, String payment_method, String shipping_method, Double prezzo_totale,
+                                       Double tassa_totale, String ip, String browser, String cartaDiCredito, LocalDateTime data, String email) throws SQLException {
+
+
+        PreparedStatement ps = getConnection().prepareStatement("UPDATE ordini_completati SET  order_id = ?,store_code = ?, payment_method = ?, shipping_method = ?, " +
+                " prezzo_totale = ?, tassa_totale = ? ,ip = ? ,browser = ? ,carta_di_credito = ? ,data = ? ,email = ? where id_evento = ? ");
+
+        Timestamp timestamp = Timestamp.valueOf(data);
+
+        ps.setString(1, orderId);
+        ps.setString(2, storeCode);
+        ps.setString(3, payment_method);
+        ps.setString(4, shipping_method);
+        ps.setDouble(5, prezzo_totale);
+        ps.setDouble(6, tassa_totale);
+        ps.setString(7, ip);
+        ps.setString(8, browser);
+        ps.setString(9, cartaDiCredito);
+        ps.setTimestamp(10, timestamp);
+        ps.setString(11, email);
+        ps.setInt(12, idEvento);
+
+        ps.executeUpdate();
+
+        ResultSet rs = ps.getGeneratedKeys();
+        rs.next();
+
+
+    }
+
+
+
+
+    public void insertLogged(int idEvento, String ip, String browser, LocalDateTime data, String email,String tipoEvento) throws SQLException {
+
+
+        PreparedStatement ps = getConnection().prepareStatement("INSERT INTO "+tipoEvento+"(id_evento,ip,browser,data,email) VALUES (?,?,?,?,?)");
+
+        Timestamp timestamp = Timestamp.valueOf(data);
+
+        ps.setInt(1, idEvento);
+        ps.setString(2, ip);
+        ps.setString(3, browser);
+        ps.setTimestamp(4, timestamp);
+        ps.setString(5, email);
+
+        ps.executeUpdate();
+
+        ResultSet rs = ps.getGeneratedKeys();
+        rs.next();
+
+
+    }
+
+
+
 
 
 }

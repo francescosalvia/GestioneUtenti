@@ -120,6 +120,8 @@ public class Main
 
         s.caricaOrdineCO();
 
+        s.caricaLogged();
+
 
 
         } catch (SQLException e) {

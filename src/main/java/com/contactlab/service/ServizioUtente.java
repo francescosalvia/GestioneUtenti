@@ -342,7 +342,7 @@ public class ServizioUtente {
                     if (uSize > 0) {
                         for (int i = 0; i < uSize; i++) {
                             if (email.equalsIgnoreCase(utenti.get(i).getEmail())) {
-                                System.out.println("email gia inserita!! Controlla il file alla riga " + contatore);
+                                log.info("email gia inserita!! Controlla il file alla riga {}", contatore);
                                 inserito = true;
                             }
                         }
@@ -436,15 +436,17 @@ public class ServizioUtente {
 
                     if (dataBase.getUtentePerEmail(email) != null)
                     {
-                        int idEvento = dataBase.checkOrderId(orderId);
+                        int idEvento = dataBase.checkOrderId(orderId);  // mi ritorna l'id evento se = 0 vuol dire che non è stato trovato nessun evento e va inserito
                         if (idEvento == 0){
                             int idEventoDopoInsert = dataBase.insertTipoEvento(tipoEvento);
                             dataBase.insertOrdiniCompletati(idEventoDopoInsert,orderId, storeCode, payment_method, shipping_method, prezzo_totale
                                     , tassa_totale, ip, browser, cartaDiCredito, data, email,tipoEvento);
+                                    log.info("ordine completato inserito");
                         } else {
-                            //cambiare con metodo update
-                            dataBase.insertOrdiniCompletati(idEvento,orderId, storeCode, payment_method, shipping_method, prezzo_totale
-                                    , tassa_totale, ip, browser, cartaDiCredito, data, email,tipoEvento);
+                            // se id != 0 allora faccio l'update
+                            dataBase.updateOrdiniCompletati(idEvento,orderId, storeCode, payment_method, shipping_method, prezzo_totale
+                                    , tassa_totale, ip, browser, cartaDiCredito, data, email);
+                            log.info("ordine completato aggiornato");
                         }
                     } else
                     {
@@ -457,9 +459,6 @@ public class ServizioUtente {
         }
     }
 
-
-
-
     public static LocalDateTime controlloDate(String date, int contatore) {
         LocalDateTime localDate = null;
         try {
@@ -471,6 +470,49 @@ public class ServizioUtente {
 
         return localDate;
     }
+
+
+
+
+    public void caricaLogged() throws SQLException {
+        String file = "C:\\Users\\francesco.salvia\\Desktop\\GesioneUtenti\\log.txt";
+        try {
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+
+            int contatore = 0;
+            while ((line = br.readLine()) != null) {
+                String[] details = line.split(";");
+
+                contatore++;
+
+                if (details.length == 5) {
+                    String ip = details[0];
+                    String browser = details[1];
+                    String localDate = details[2];
+                    LocalDateTime data = controlloDate(localDate, contatore);
+                    String email = details[3];
+                    String tipoEvento = details[4];
+
+                    if (dataBase.getUtentePerEmail(email) != null)
+                    {
+                            int idEventoDopoInsert = dataBase.insertTipoEvento(tipoEvento);
+                            dataBase.insertLogged(idEventoDopoInsert,ip,  browser, data, email, tipoEvento);
+                            log.info("evento {} inserito", tipoEvento);
+
+                    } else
+                    {
+                        log.warn("Nessun utente trovato con questa email");
+                    }
+                }
+            }
+        } catch (IOException e) {
+            log.error("IoException nel metodo caricaUtenti  ", e);
+        }
+    }
+
+
 
 
 
